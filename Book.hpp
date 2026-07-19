@@ -8,11 +8,12 @@ class Book {
     std::string author_;
     std::string title_;
     int year_;
-    bool borrowed;
+    bool borrowed_;
 
     public:
     Book();
     Book(std::string title, std::string author, int year);
+    Book(std::string title, std::string author, int year, bool borrowed);
 
     std::string get_Author() const;
     std::string get_Title() const;
