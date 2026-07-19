@@ -2,11 +2,11 @@
 #include <iostream>
 
 Book::Book()
-    : author_(""), title_(""), year_(0), borrowed(false) {}
+    : title_(""),author_(""), year_(0), borrowed(false) {}
 
-Book::Book(std::string author,std::string title, int year ){
-    author_ = author;
+Book::Book(std::string title,std::string author, int year ){
     title_ = title;
+    author_ = author;
     year_ = year;
     borrowed = false;
 }
