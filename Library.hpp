@@ -19,6 +19,10 @@ class Library{
     void borrowBook(const std::string& title);
 
     void returnBook(const std::string& title);
+
+    void saveBooks(const std::string& filename) const;
+
+    void loadBooks(const std::string& filename);
 };
 
 #endif

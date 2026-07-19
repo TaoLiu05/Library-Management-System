@@ -2,13 +2,20 @@
 #include <iostream>
 
 Book::Book()
-    : title_(""),author_(""), year_(0), borrowed(false) {}
+    : title_(""),author_(""), year_(0), borrowed_(false) {}
 
-Book::Book(std::string title,std::string author, int year ){
+Book::Book(std::string title,std::string author, int year){
     title_ = title;
     author_ = author;
     year_ = year;
-    borrowed = false;
+    borrowed_ = false;
+}
+
+Book::Book(std::string title,std::string author, int year,bool borrowed){
+    title_ = title;
+    author_ = author;
+    year_ = year;
+    borrowed_ = borrowed;
 }
 
 std::string Book::get_Author() const{
@@ -24,21 +31,21 @@ int Book::get_year() const{
 }
 
 bool Book:: isBorrowed() const{
-    return borrowed;
+    return borrowed_;
 }
 
 void Book::borrowBook(){
-    borrowed = true;
+    borrowed_ = true;
 }
 
 void Book:: returnBook(){
-    borrowed = false;
+    borrowed_ = false;
 }
 
 void Book:: display() const{
     std:: cout << title_ << " | " << author_ << " | " << year_ << " | ";
 
-    if(borrowed){
+    if(borrowed_){
         std:: cout << "Borrowed";
     }
     else{
