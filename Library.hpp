@@ -12,7 +12,7 @@ class Library{
     public:
     void displayBooks() const;
 
-    void addBook(const Book& book);
+    bool addBook(const Book& book);
 
     void searchBook(const std::string& title) const;
 
@@ -23,6 +23,10 @@ class Library{
     void saveBooks(const std::string& filename) const;
 
     void loadBooks(const std::string& filename);
+
+    void removeBook(const std::string& title);
+
+    void sortBooks();
 };
 
 #endif

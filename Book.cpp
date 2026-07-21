@@ -53,5 +53,3 @@ void Book:: display() const{
     }
     std:: cout << std:: endl;
 }
-
-

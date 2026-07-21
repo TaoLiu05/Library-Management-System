@@ -16,15 +16,32 @@ int main(){
         std::cout << std::endl<< "======= Library Management System ======="<<std::endl;
         std::cout <<"1. Display Books"<< std::endl;
         std::cout <<"2. Add Book"<< std::endl;
-        std::cout <<"3. Search Book"<< std::endl;
-        std::cout <<"4. Borrow Book"<< std::endl;
-        std::cout <<"5. Return Book"<< std::endl;
-        std::cout <<"6. Save and Exit"<< std::endl;
+        std::cout <<"3. Remove Book" <<std::endl;
+        std::cout <<"4. Search Book"<< std::endl;
+        std::cout <<"5. Borrow Book"<< std::endl;
+        std::cout <<"6. Return Book"<< std::endl;
+        std::cout <<"7. Save and Exit"<< std::endl;
 
-        std::cout << std::endl << "Enter your choice: ";
-        std::cin >> choice;
+        while(true){
+            std::cout << std::endl << "Enter your choice: ";
 
-        std:: cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            if(!(std::cin >> choice)){
+                std::cout << "Please enter a number.";
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                continue;
+            }
+            if(choice < 1 || choice > 7){
+                std::cout << "Choose a number between 1 and 7.";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                continue;
+            }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            break;
+        }
 
         switch(choice){
 
@@ -45,18 +62,46 @@ int main(){
                 std::getline( std::cin, author);
 
                 std::cout << "Year: ";
-                std::cin >> year;
+                while(true){
+                    if(!(std::cin >> year)){
+                        std::cout << "Please enter a valid year: ";
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+                    }
+                    if(year < 1400 || year > 2100){
+                        std::cout <<"Year must be between 1400 and 2100: ";
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-                lib.addBook(Book(title, author, year));
-                lib.saveBooks(file_name);
+                        continue;
+                    }
 
-                std::cout <<"Book added!" << std::endl;
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                    break;
+                }
+
+                if(lib.addBook(Book(title, author, year))){
+                    lib.saveBooks(file_name);
+                    std::cout <<"Book added!" << std::endl;
+                }
                 break;
             }
 
             case 3:{
+                std:: string title;
+
+                std:: cout << "Enter title: ";
+                std::getline(std::cin, title);
+
+                lib.removeBook(title);
+                lib.saveBooks(file_name);
+
+                break;
+            }
+
+            case 4:{
                 std::string title;
 
                 std::cout <<"Enter title: ";
@@ -67,7 +112,7 @@ int main(){
                 break;
             }
 
-            case 4:{
+            case 5:{
                 std::string title;
 
                 std::cout <<"Enter title: ";
@@ -79,7 +124,7 @@ int main(){
                 break;
             }
 
-            case 5:{
+            case 6:{
                 std::string title;
 
                 std::cout << "Enter title: ";
@@ -91,7 +136,7 @@ int main(){
                 break;
             }
 
-            case 6:{
+            case 7:{
                 lib.saveBooks(file_name);
                 std::cout <<"Library saved."<< std::endl;
                 break;
@@ -102,7 +147,7 @@ int main(){
             }
         }
 
-    } while(choice != 6);
+    } while(choice != 7);
 
     return 0;
 }
